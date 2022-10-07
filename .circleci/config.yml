@@ -1,8 +1,21 @@
 version: 2.1
 jobs:
   build:
-    docker: 
+    docker:
       - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A first hello"
+      - run: sleep 5
+  test:
+    docker:
+      - image: cimg/ruby:3.0.2
+    steps:
+      - checkout
+      - run: echo "A more familiar hi"
+      - run: sleep 5
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test
